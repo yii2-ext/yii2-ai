@@ -30,7 +30,8 @@ The returned `Response` carries the fully assembled answer.
 
 ## Multi-turn chat
 
-History is your data: pass it as a list of `['role' => ..., 'content' => ...]` pairs, oldest first. Roles: `user`, `assistant` (or `model`).
+History is your data: pass it as a list of `['role' => ..., 'content' => ...]` pairs, oldest first. Roles: `user`,
+`assistant` (or `model`).
 
 ```php
 $response = $service->chatWithHistory(
@@ -71,7 +72,8 @@ $response = $service->chat('conv-42', 'Continue', $historyProvider);
 
 ## Direct chat access
 
-`createChat()` returns the underlying ai-access `Chat` object for everything the service does not wrap — tools, per-call options, message inspection:
+`createChat()` returns the underlying ai-access `Chat` object for everything the service does not wrap — tools, per-call
+options, message inspection:
 
 ```php
 $chat = $service->createChat();
@@ -82,7 +84,8 @@ $chat->addTool(new \AIAccess\Chat\Tool('get_weather', 'Returns the weather.', ['
 $response = $chat->sendMessage('Weather in Moscow?');
 ```
 
-The provider default options (temperature, max tokens, top-p) are already applied to the chat; per-call `setOptions()` values win.
+The provider default options (temperature, max tokens, top-p) are already applied to the chat; per-call `setOptions()`
+values win.
 
 ## Listing models
 

@@ -1,8 +1,10 @@
 # Yii2 AI
 
-Доступ к AI/LLM для [Yii2](https://github.com/yiisoft/yii2): фабрика провайдеров и сервис чата на базе [ai-access](https://github.com/dg/ai-access).
+Доступ к AI/LLM для [Yii2](https://github.com/yiisoft/yii2): фабрика провайдеров и сервис чата на базе
+[ai-access](https://github.com/dg/ai-access).
 
-Одна зависимость, семь бэкендов: Yandex AI Studio, OpenAI, Claude, Gemini, DeepSeek, Grok и любой OpenAI-совместимый endpoint (Ollama, OpenRouter, vLLM, ...).
+Одна зависимость, семь бэкендов: Yandex AI Studio, OpenAI, Claude, Gemini, DeepSeek, Grok и любой OpenAI-совместимый
+endpoint (Ollama, OpenRouter, vLLM, ...).
 
 - Настройка провайдера одной строкой, пресеты под каждого
 - Одноразовая генерация, стриминг и мультитёрн-чат с вашей историей
@@ -11,8 +13,7 @@
 - Консольные smoke-команды (`ai/chat`, `ai/list-models`)
 - DI-интеграция: компонент или определение контейнера — как удобно
 
-> [!NOTE]
-> Английская версия — в [README.md](README.md).
+> [!NOTE] Английская версия — в [README.md](README.md).
 
 ## Требования
 
@@ -81,7 +82,8 @@ php yii ai/list-models
 php yii ai/chat "Привет" --model=gpt://<folder>/<model>
 ```
 
-Зарегистрируйте контроллер в `controllerMap` консоли и предоставьте определение `ChatServiceInterface` в контейнере (см. [Конфигурация](docs/configuration.md)).
+Зарегистрируйте контроллер в `controllerMap` консоли и предоставьте определение `ChatServiceInterface` в контейнере (см.
+[Конфигурация](docs/configuration.md)).
 
 ## Изменения
 

@@ -152,8 +152,8 @@ final class ChatServiceTest extends TestCase
     public function testStreamDeliversDeltasAndAssemblesTheAnswer(): void
     {
         $this->http->queueStream(
-            "data: {\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\",\"content\":\"Hel\"},\"finish_reason\":null}]}\n\n",
-            "data: {\"choices\":[{\"index\":0,\"delta\":{\"content\":\"lo\"},\"finish_reason\":\"stop\"}]}\n\n",
+            "data: {\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\",\"content\":\"Good\"},\"finish_reason\":null}]}\n\n",
+            "data: {\"choices\":[{\"index\":0,\"delta\":{\"content\":\"bye\"},\"finish_reason\":\"stop\"}]}\n\n",
             "data: [DONE]\n\n",
         );
 
@@ -164,8 +164,8 @@ final class ChatServiceTest extends TestCase
             return null;
         });
 
-        self::assertSame(['Hel', 'lo'], $deltas);
-        self::assertSame('Hello', $response->getText());
+        self::assertSame(['Good', 'bye'], $deltas);
+        self::assertSame('Goodbye', $response->getText());
     }
 
     public function testStreamSendsStreamFlag(): void

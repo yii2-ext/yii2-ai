@@ -1,6 +1,7 @@
 # Providers
 
-`ProviderFactory` builds a ready-to-use `ChatProviderInterface` for each supported backend. Every method accepts the same trailing options:
+`ProviderFactory` builds a ready-to-use `ChatProviderInterface` for each supported backend. Every method accepts the
+same trailing options:
 
 ```php
 ProviderFactory::yandex(
@@ -28,7 +29,8 @@ ProviderFactory::yandex(
 - Endpoint: the OpenAI-compatible `chat/completions` dialect at `https://ai.api.cloud.yandex.net/v1`.
 - Auth: `Authorization: Api-Key <key>`.
 - Models: `gpt://<folder-id>/<model>` URIs; a bare model name plus `folder` is combined into the URI automatically.
-- Reasoning models (e.g. `deepseek-v4-flash`) may spend the token budget on internal reasoning and return an empty text with `finish_reason: token_limit` — check `Response::getReasoning()`.
+- Reasoning models (e.g. `deepseek-v4-flash`) may spend the token budget on internal reasoning and return an empty text
+  with `finish_reason: token_limit` — check `Response::getReasoning()`.
 
 ## OpenAI-compatible endpoints
 
@@ -60,6 +62,7 @@ $service->createChat('gpt-4o')->sendMessage('Hello');
 
 ## Custom HTTP transport
 
-Every factory method accepts an `AIAccess\Http\Client` as the last argument. The default is `CurlClient`; ai-access also ships `RetryClient`, `CachingClient` and `ObservableClient` (logging).
+Every factory method accepts an `AIAccess\Http\Client` as the last argument. The default is `CurlClient`; ai-access also
+ships `RetryClient`, `CachingClient` and `ObservableClient` (logging).
 
 [Back to documentation](../README.md#documentation)

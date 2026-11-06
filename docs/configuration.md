@@ -67,16 +67,16 @@ $service = Yii::$container->get(\proweb\ai\ChatServiceInterface::class);
 
 Component properties:
 
-| Property      | Type         | Description                                                        |
-| ------------- | ------------ | ------------------------------------------------------------------ |
-| `provider`    | `string`     | One of the `AiComponent::PROVIDER_*` constants                     |
-| `apiKey`      | `?string`    | API key (required)                                                 |
-| `model`       | `?string`    | Default model (required for `yandex`, optional for the rest)       |
-| `folder`      | `?string`    | Yandex folder id for the `gpt://` model URI                        |
-| `baseUrl`     | `?string`    | Endpoint base URL (required for `openai-compatible`)               |
-| `temperature` | `?float`     | Default temperature applied to every chat                          |
-| `maxTokens`   | `?int`       | Default max output tokens applied to every chat                    |
-| `topP`        | `?float`     | Default top-p applied to every chat                                |
+| Property      | Type      | Description                                                  |
+| ------------- | --------- | ------------------------------------------------------------ |
+| `provider`    | `string`  | One of the `AiComponent::PROVIDER_*` constants               |
+| `apiKey`      | `?string` | API key (required)                                           |
+| `model`       | `?string` | Default model (required for `yandex`, optional for the rest) |
+| `folder`      | `?string` | Yandex folder id for the `gpt://` model URI                  |
+| `baseUrl`     | `?string` | Endpoint base URL (required for `openai-compatible`)         |
+| `temperature` | `?float`  | Default temperature applied to every chat                    |
+| `maxTokens`   | `?int`    | Default max output tokens applied to every chat              |
+| `topP`        | `?float`  | Default top-p applied to every chat                          |
 
 ## Console commands
 
