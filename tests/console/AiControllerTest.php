@@ -30,7 +30,7 @@ final class AiControllerTest extends TestCase
         $exitCode = $controller->actionChat('Hi');
 
         self::assertSame(ExitCode::OK, $exitCode);
-        self::assertStringContainsString('Hello from AI', $controller->stdoutText());
+        self::assertSame("Hello from AI\n", $controller->stdoutText());
     }
 
     public function testChatSendsTheModelOption(): void
@@ -117,8 +117,7 @@ final class AiControllerTest extends TestCase
         $exitCode = $controller->actionListModels();
 
         self::assertSame(ExitCode::OK, $exitCode);
-        self::assertStringContainsString('gpt://test-folder/model-a', $controller->stdoutText());
-        self::assertStringContainsString('gpt://test-folder/model-b', $controller->stdoutText());
+        self::assertSame("gpt://test-folder/model-a\ngpt://test-folder/model-b\n", $controller->stdoutText());
     }
 
     public function testListModelsWithEmptyList(): void
@@ -130,7 +129,7 @@ final class AiControllerTest extends TestCase
         $exitCode = $controller->actionListModels();
 
         self::assertSame(ExitCode::OK, $exitCode);
-        self::assertStringContainsString('empty', $controller->stdoutText());
+        self::assertSame("The model list is empty (check the API key and folder).\n", $controller->stdoutText());
     }
     protected function tearDown(): void
     {

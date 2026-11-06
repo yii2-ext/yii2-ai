@@ -61,6 +61,42 @@ final class ProviderFactoryTest extends TestCase
         self::assertArrayNotHasKey('top_p', $payload);
     }
 
+    public function testOnlyTemperatureIsSent(): void
+    {
+        $http = new MockHttpClient();
+        $provider = ProviderFactory::yandex('test-key', 'm', folder: 'f', temperature: 0.3, httpClient: $http);
+
+        $this->sendRequest($http, $provider);
+        $payload = $http->lastJsonPayload();
+        self::assertSame(0.3, $payload['temperature']);
+        self::assertArrayNotHasKey('max_tokens', $payload);
+        self::assertArrayNotHasKey('top_p', $payload);
+    }
+
+    public function testOnlyMaxTokensIsSent(): void
+    {
+        $http = new MockHttpClient();
+        $provider = ProviderFactory::yandex('test-key', 'm', folder: 'f', maxTokens: 512, httpClient: $http);
+
+        $this->sendRequest($http, $provider);
+        $payload = $http->lastJsonPayload();
+        self::assertSame(512, $payload['max_tokens']);
+        self::assertArrayNotHasKey('temperature', $payload);
+        self::assertArrayNotHasKey('top_p', $payload);
+    }
+
+    public function testOnlyTopPIsSent(): void
+    {
+        $http = new MockHttpClient();
+        $provider = ProviderFactory::yandex('test-key', 'm', folder: 'f', topP: 0.9, httpClient: $http);
+
+        $this->sendRequest($http, $provider);
+        $payload = $http->lastJsonPayload();
+        self::assertSame(0.9, $payload['top_p']);
+        self::assertArrayNotHasKey('temperature', $payload);
+        self::assertArrayNotHasKey('max_tokens', $payload);
+    }
+
     public function testOpenAiCompatibleUsesBearerAuthByDefault(): void
     {
         $http = new MockHttpClient();
@@ -75,15 +111,15 @@ final class ProviderFactoryTest extends TestCase
      * @param class-string $clientClass
      */
     #[DataProvider('clientProvider')]
-    public function testProviderFactorsBuildTheRightClient(string $method, string $clientClass): void
+    public function testProviderFactorsBuildTheRightClientAndApplyOptions(string $method, string $clientClass): void
     {
         $http = new MockHttpClient();
         $provider = match ($method) {
-            'openAi' => ProviderFactory::openAi('test-key', 'some-model', httpClient: $http),
-            'claude' => ProviderFactory::claude('test-key', 'some-model', httpClient: $http),
-            'gemini' => ProviderFactory::gemini('test-key', 'some-model', httpClient: $http),
-            'deepSeek' => ProviderFactory::deepSeek('test-key', 'some-model', httpClient: $http),
-            'grok' => ProviderFactory::grok('test-key', 'some-model', httpClient: $http),
+            'openAi' => ProviderFactory::openAi('test-key', 'some-model', temperature: 0.3, httpClient: $http),
+            'claude' => ProviderFactory::claude('test-key', 'some-model', temperature: 0.3, httpClient: $http),
+            'gemini' => ProviderFactory::gemini('test-key', 'some-model', temperature: 0.3, httpClient: $http),
+            'deepSeek' => ProviderFactory::deepSeek('test-key', 'some-model', temperature: 0.3, httpClient: $http),
+            'grok' => ProviderFactory::grok('test-key', 'some-model', temperature: 0.3, httpClient: $http),
             default => throw new InvalidArgumentException("Unknown provider method: {$method}."),
         };
 
@@ -91,6 +127,18 @@ final class ProviderFactoryTest extends TestCase
 
         $reflection = new ReflectionProperty(ChatProvider::class, 'client');
         self::assertInstanceOf($clientClass, $reflection->getValue($provider));
+
+        $this->sendRequest($http, $provider);
+        $payload = $http->lastJsonPayload();
+        if ($method === 'gemini') {
+            // Gemini nests generation options under generationConfig.
+            self::assertIsArray($payload['generationConfig']);
+            $temperature = $payload['generationConfig']['temperature'];
+        } else {
+            $temperature = $payload['temperature'];
+        }
+
+        self::assertSame(0.3, $temperature, 'the default options must reach the chat of every provider');
     }
 
     public function testYandexAcceptsFullModelUri(): void
