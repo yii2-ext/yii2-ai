@@ -61,18 +61,6 @@ final class ProviderFactoryTest extends TestCase
         self::assertArrayNotHasKey('top_p', $payload);
     }
 
-    public function testOnlyTemperatureIsSent(): void
-    {
-        $http = new MockHttpClient();
-        $provider = ProviderFactory::yandex('test-key', 'm', folder: 'f', temperature: 0.3, httpClient: $http);
-
-        $this->sendRequest($http, $provider);
-        $payload = $http->lastJsonPayload();
-        self::assertSame(0.3, $payload['temperature']);
-        self::assertArrayNotHasKey('max_tokens', $payload);
-        self::assertArrayNotHasKey('top_p', $payload);
-    }
-
     public function testOnlyMaxTokensIsSent(): void
     {
         $http = new MockHttpClient();
@@ -82,6 +70,18 @@ final class ProviderFactoryTest extends TestCase
         $payload = $http->lastJsonPayload();
         self::assertSame(512, $payload['max_tokens']);
         self::assertArrayNotHasKey('temperature', $payload);
+        self::assertArrayNotHasKey('top_p', $payload);
+    }
+
+    public function testOnlyTemperatureIsSent(): void
+    {
+        $http = new MockHttpClient();
+        $provider = ProviderFactory::yandex('test-key', 'm', folder: 'f', temperature: 0.3, httpClient: $http);
+
+        $this->sendRequest($http, $provider);
+        $payload = $http->lastJsonPayload();
+        self::assertSame(0.3, $payload['temperature']);
+        self::assertArrayNotHasKey('max_tokens', $payload);
         self::assertArrayNotHasKey('top_p', $payload);
     }
 

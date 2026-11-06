@@ -19,6 +19,9 @@ jobs:
   phpunit-yii2-22:
     uses: yii2-framework/actions/.github/workflows/phpunit.yml@f0e06ea5cc965cff4431177d448add7b7c98668b # v2.0.1
     with:
+      # Distinct concurrency groups: both legs call the same reusable workflow, and its
+      # default group (workflow + ref) would make the later-starting leg cancel the other.
+      concurrency-group: build-22-${{ github.ref }}
       extensions: fileinfo
       php-version: '["8.3","8.4","8.5"]'
     secrets:
@@ -29,6 +32,7 @@ jobs:
   phpunit-yii2-20:
     uses: yii2-framework/actions/.github/workflows/phpunit.yml@f0e06ea5cc965cff4431177d448add7b7c98668b # v2.0.1
     with:
+      concurrency-group: build-20-${{ github.ref }}
       extensions: fileinfo
       php-version: '["8.3","8.4","8.5"]'
       hook: "composer require 'yiisoft/yii2:^2.0.54' --no-update && composer update --prefer-dist --no-interaction --no-progress --optimize-autoloader"

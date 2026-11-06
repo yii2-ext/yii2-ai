@@ -59,24 +59,25 @@ final readonly class ChatProvider implements ChatProviderInterface
      */
     private function applyOptions(Chat $chat): void
     {
-        if ($this->temperature === null && $this->maxTokens === null && $this->topP === null) {
-            return;
+        $options = array_filter(
+            [
+                'maxOutputTokens' => $this->maxTokens,
+                'temperature' => $this->temperature,
+                'topP' => $this->topP,
+            ],
+            static fn(float|int|null $value): bool => $value !== null,
+        );
+
+        if ($options !== []) {
+            match (true) {
+                $chat instanceof OpenAIChat => $chat->setOptions(...$options),
+                $chat instanceof ClaudeChat => $chat->setOptions(...$options),
+                $chat instanceof GeminiChat => $chat->setOptions(...$options),
+                $chat instanceof DeepSeekChat => $chat->setOptions(...$options),
+                $chat instanceof GrokChat => $chat->setOptions(...$options),
+                $chat instanceof OpenAICompatibleChat => $chat->setOptions(...$options),
+                default => throw new LogicException(sprintf('Unsupported chat type: %s.', get_debug_type($chat))),
+            };
         }
-
-        $options = [
-            'maxOutputTokens' => $this->maxTokens,
-            'temperature' => $this->temperature,
-            'topP' => $this->topP,
-        ];
-
-        match (true) {
-            $chat instanceof OpenAIChat => $chat->setOptions(...$options),
-            $chat instanceof ClaudeChat => $chat->setOptions(...$options),
-            $chat instanceof GeminiChat => $chat->setOptions(...$options),
-            $chat instanceof DeepSeekChat => $chat->setOptions(...$options),
-            $chat instanceof GrokChat => $chat->setOptions(...$options),
-            $chat instanceof OpenAICompatibleChat => $chat->setOptions(...$options),
-            default => throw new LogicException(sprintf('Unsupported chat type: %s.', get_debug_type($chat))),
-        };
     }
 }
