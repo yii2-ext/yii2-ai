@@ -1,0 +1,32 @@
+---
+on:
+  pull_request: &ignore-paths
+    paths-ignore:
+      - ".gitattributes"
+      - ".gitignore"
+      - "CHANGELOG.md"
+      - "docs/**"
+      - "README.md"
+
+  push: *ignore-paths
+
+name: build
+
+permissions:
+  contents: read
+
+jobs:
+  phpunit-yii2-22:
+    uses: yii2-framework/actions/.github/workflows/phpunit.yml@f0e06ea5cc965cff4431177d448add7b7c98668b # v2.0.1
+    with:
+      php-version: '["8.3","8.4","8.5"]'
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  # The reusable workflow resolves dependencies before the hook runs, so the 2.0 leg
+  # re-pins yiisoft/yii2 and updates once more to test against the stable branch.
+  phpunit-yii2-20:
+    uses: yii2-framework/actions/.github/workflows/phpunit.yml@f0e06ea5cc965cff4431177d448add7b7c98668b # v2.0.1
+    with:
+      php-version: '["8.3","8.4","8.5"]'
+      hook: "composer require 'yiisoft/yii2:^2.0.54' --no-update && composer update --prefer-dist --no-interaction --no-progress --optimize-autoloader"
