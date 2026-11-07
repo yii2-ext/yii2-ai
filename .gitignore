@@ -2,6 +2,8 @@
 .codex
 .claude/*
 !.claude/skills/
+.claude/skills/*
+!.claude/skills/yii2-ai
 
 # codecoverage (if present)
 code_coverage
