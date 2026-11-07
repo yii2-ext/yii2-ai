@@ -1,5 +1,7 @@
 # Yii2 AI
 
+< English | [Русский](README_RU.md) >
+
 AI/LLM access for [Yii2](https://github.com/yiisoft/yii2): a provider factory and a chat service on top of
 [ai-access](https://github.com/dg/ai-access).
 

@@ -1,5 +1,7 @@
 # Yii2 AI
 
+< [English](README.md) | Русский >
+
 Доступ к AI/LLM для [Yii2](https://github.com/yiisoft/yii2): фабрика провайдеров и сервис чата на базе
 [ai-access](https://github.com/dg/ai-access).
 
