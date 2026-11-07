@@ -74,6 +74,10 @@ $service = Yii::$container->get(\proweb\ai\ChatServiceInterface::class);
 - [Providers](docs/providers.md)
 - [Usage](docs/usage.md)
 - [Testing](docs/testing.md)
+- [AI agents](docs/agents.md): skill installation, client setup, and verification.
+
+The [`yii2-ai` skill](skills/yii2-ai/SKILL.md) covers provider setup, the chat service, console commands, and testing
+conventions.
 
 ## Console commands
 

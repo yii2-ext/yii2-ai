@@ -74,6 +74,10 @@ $service = Yii::$container->get(\proweb\ai\ChatServiceInterface::class);
 - [Провайдеры](docs/providers.md)
 - [Использование](docs/usage.md)
 - [Тестирование](docs/testing.md)
+- [AI-агенты](docs/agents.md): установка скилла, настройка клиентов и проверка.
+
+[Скилл `yii2-ai`](skills/yii2-ai/SKILL.md) описывает настройку провайдеров, чат-сервис, консольные команды и конвенции
+tестирования.
 
 ## Консольные команды
 
