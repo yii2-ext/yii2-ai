@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on Keep a Changelog, and this project adheres to Semantic Versioning.
 
-## 0.1.0
+## [0.1.0] - 2026-11-08
 
 ### Added
 
@@ -16,3 +16,5 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - `AiComponent` and `Bootstrap` for component/DI wiring.
 - Console commands `ai/chat` and `ai/list-models`.
 - Agent skill (`skills/yii2-ai`) shipped with the package.
+
+[0.1.0]: https://github.com/yii2-ext/yii2-ai/releases/tag/v0.1.0
