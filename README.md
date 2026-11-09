@@ -2,6 +2,10 @@
 
 < English | [Русский](README_RU.md) >
 
+[![Latest stable version](https://img.shields.io/packagist/v/proweb/yii2-ai.svg)](https://packagist.org/packages/proweb/yii2-ai)
+[![PHP version](https://img.shields.io/packagist/php-v/proweb/yii2-ai.svg)](https://packagist.org/packages/proweb/yii2-ai)
+[![Total downloads](https://img.shields.io/packagist/dt/proweb/yii2-ai.svg)](https://packagist.org/packages/proweb/yii2-ai)
+
 AI/LLM access for [Yii2](https://github.com/yiisoft/yii2): a provider factory and a chat service on top of
 [ai-access](https://github.com/dg/ai-access).
 
