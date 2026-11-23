@@ -33,7 +33,7 @@
     "require": {
         "php": ">=8.3",
         "ai-access/ai-access": "^1.1",
-        "yiisoft/yii2": "^2.0.54 || ^22.0@dev"
+        "yiisoft/yii2": "^2.0.45 || ^22.0@dev"
     },
     "require-dev": {
         "infection/infection": "^0.35",

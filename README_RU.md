@@ -24,7 +24,7 @@ endpoint (Ollama, OpenRouter, vLLM, ...).
 ## Требования
 
 - PHP 8.3 или выше
-- Yii 2.0.54+ или ветка разработки Yii 22
+- Yii 2.0.45+ или ветка разработки Yii 22
 - `ext-curl` (используется ai-access)
 
 ## Установка

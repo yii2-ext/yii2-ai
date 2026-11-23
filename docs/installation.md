@@ -4,7 +4,7 @@
 
 - [`PHP`](https://www.php.net/downloads) 8.3 or higher with `ext-curl`.
 - [`Composer`](https://getcomposer.org/download/) for dependency management.
-- [`Yii2`](https://github.com/yiisoft/yii2) 2.0.54 or higher, or the Yii 22 development branch.
+- [`Yii2`](https://github.com/yiisoft/yii2) 2.0.45 or higher, or the Yii 22 development branch.
 
 ## Installation
 

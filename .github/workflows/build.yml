@@ -35,4 +35,4 @@ jobs:
       concurrency-group: build-20-${{ github.ref }}
       extensions: fileinfo
       php-version: '["8.3","8.4","8.5"]'
-      hook: "composer require 'yiisoft/yii2:^2.0.54' --no-update && composer update --prefer-dist --no-interaction --no-progress --optimize-autoloader"
+      hook: "composer require 'yiisoft/yii2:^2.0.45' --no-update && composer update --prefer-dist --no-interaction --no-progress --optimize-autoloader"

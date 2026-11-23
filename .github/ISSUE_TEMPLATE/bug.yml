@@ -42,7 +42,7 @@ body:
       value: |
         - OS: [e.g. Ubuntu 24.04, macOS 14, Windows 11]
         - PHP: [e.g. 8.3.10]
-        - Yii: [e.g. 2.0.54 / 22.0.x-dev]
+        - Yii: [e.g. 2.0.45 / 22.0.x-dev]
         - Package version / commit: [e.g. v0.1.0 / abc1234]
     validations:
       required: false

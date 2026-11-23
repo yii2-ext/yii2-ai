@@ -24,7 +24,7 @@ endpoint (Ollama, OpenRouter, vLLM, ...).
 ## Requirements
 
 - PHP 8.3 or higher
-- Yii 2.0.54+ or the Yii 22 development branch
+- Yii 2.0.45+ or the Yii 22 development branch
 - `ext-curl` (used by ai-access)
 
 ## Installation
